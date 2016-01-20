@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.ganchai" >
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.Design" >
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="55e27d86e0f55a4b7e0023b6" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${channel}" />
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Design" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:label="activity_webview" />
+
+        <service
+            android:name=".service.HttpClientSpiceService"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.FullImageActivity"
+            android:label="@string/title_activity_full_image" />
+        <activity
+            android:name=".activity.SettingActivity"
+            android:label="@string/title_activity_setting" />
+        <activity
+            android:name=".extend.BaseExtendActivity"
+            android:label="@string/title_activity_base_extend" />
+        <activity
+            android:name=".activity.AboutActivity"
+            android:label="@string/title_activity_about" />
+        <activity
+            android:name=".activity.MustActivity"
+            android:label="@string/title_activity_must" />
+        <activity
+            android:name=".activity.PostActivity"
+            android:label="@string/title_activity_post" />
+        <activity android:name="xyz.ganchai.activity.MainActivity" />
+
+        <!-- EXTEND_BEGIN -->
+        <activity
+            android:name=".extend.gank.ExtendGankActivity"
+            android:label="@string/title_activity_extend_gank" />
+        <activity
+            android:name=".extend.rss.ExtendRssActivity"
+            android:label="@string/title_activity_rss" />
+        <activity
+            android:name=".extend.atom.ExtendAtomActivity"
+            android:label="@string/title_activity_atom" />
+        <activity
+            android:name=".extend.html.ExtendHtmlActivity"
+            android:label="@string/title_activity_html" />
+        <activity
+            android:name=".extend.weixin.ExtendWeixinActivity"
+            android:label="@string/title_activity_html" />
+        <!-- EXTEND_END -->
+        <activity
+            android:name="xyz.ganchai.activity.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name=".extend.weixin.ExtendWeixinWebviewActivity"
+            android:label="@string/title_activity_extend_weixin_webview" >
+        </activity>
+    </application>
+
+</manifest>

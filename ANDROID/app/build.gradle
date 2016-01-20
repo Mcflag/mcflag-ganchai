@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "org.ganchai"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    // rename the apk with the version name
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File(
+                    output.outputFile.parent + "/${variant.buildType.name}",
+                    "ganchai-${variant.productFlavors[0].name}-${variant.buildType.name}-${variant.versionName}.apk".toLowerCase())
+        }
+    }
+
+    productFlavors {
+        dev {
+            manifestPlaceholders = [channel: "dev"]
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.jayfeng:lesscode-core:0.6.4'
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:design:23.1.0'
+    compile 'com.android.support:preference-v7:23.1.0'
+    compile('com.octo.android.robospice:robospice-google-http-client:1.4.14') {
+        exclude(group: 'org.apache.httpcomponents', module: 'httpclient') //by both name and group
+    }
+    compile('com.google.http-client:google-http-client-gson:1.19.0') {
+        exclude module: 'xpp3'
+        exclude group: 'stax'
+    }
+    compile 'com.android.support:recyclerview-v7:23.1.0'
+    compile 'com.facebook.fresco:fresco:0.6.0'
+    compile 'in.srain.cube:ultra-ptr:1.0.10'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'org.jsoup:jsoup:1.8.3'
+    compile project(':DroidPlugin')
+}
